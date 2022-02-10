@@ -25,8 +25,9 @@ The `Create()` method is fast but it allocates an internal buffer.
 # Performance
 [See the test suite here](src/MurmurIncrementalHash.Benchmarks/MurmurBenchmarks.cs). These numbers are from Ryzen 4000, 64 bit laptop.
 
-|       Method |     Mean |    Error |   StdDev | Allocated |
-|------------- |---------:|---------:|---------:|----------:|
-|     Murmur32 | 56.46 ns | 1.088 ns | 1.118 ns |         - |
-| Murmur128x64 | 56.16 ns | 0.432 ns | 0.361 ns |         - |
-| Murmur128x86 | 62.94 ns | 0.815 ns | 0.681 ns |         - |
+|       Method |      Mean |    Error |   StdDev | Allocated |
+|------------- |----------:|---------:|---------:|----------:|
+|     Murmur32 |  60.26 ns | 0.322 ns | 0.286 ns |         - |
+| Murmur128x64 |  56.84 ns | 0.507 ns | 0.474 ns |         - |
+| Murmur128x86 |  58.29 ns | 0.166 ns | 0.130 ns |         - |
+|          Md5 | 275.34 ns | 0.677 ns | 0.634 ns |         - |
