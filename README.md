@@ -1,5 +1,5 @@
 # MurmurIncrementalHash
-Fast, 0 allocation, Murmur32 and Murmur128 incremental hash implementation.
+Fast, 0-allocation, Murmur32 and Murmur128 incremental hash implementation.
 
 # Usage
 ```C#
@@ -18,8 +18,12 @@ byte[] hash = murmur.GetHashAndReset();
 // murmur.GetHashAndReset(hash);
 ```
 
+An instance can be safely reused after the call to `GetHashAndReset()`.
+The `Create()` method is fast but it allocates an internal buffer.
+
+
 # Performance
-See asd for test suite. These numbers are from Ryzen 4000, 64 bit laptop.
+[See the test suite here](src/MurmurIncrementalHash.Benchmarks/MurmurBenchmarks.cs). These numbers are from Ryzen 4000, 64 bit laptop.
 
 |       Method |     Mean |    Error |   StdDev | Allocated |
 |------------- |---------:|---------:|---------:|----------:|
