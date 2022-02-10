@@ -6,6 +6,23 @@ namespace MurmurIncrementalHash.Tests
 {
     public class Murmur128Tests
     {
+        [Theory]
+        [InlineData(new byte[] { 0x13, 0x37 }, 0, "cfa4acc1956d584456979e933134d835")]
+        public void SmokeTest(byte[] data, uint seed, string expectedHashHex)
+        {
+            // Given
+            var hash = new byte[16];
+            var murmur = Murmur128.Create(seed, Murmur128Algorithm.X64);
+
+            // When
+            murmur.AppendData(data);
+            murmur.GetHashAndReset(hash);
+
+            // Then
+            Assert.Equal(expectedHashHex, ToHex(hash));
+        }
+
+
         // https://asecuritysite.com/hash/mur
         [Theory]
         [InlineData("", "00000000000000000000000000000000")]
