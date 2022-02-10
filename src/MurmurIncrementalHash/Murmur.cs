@@ -48,6 +48,11 @@ namespace MurmurIncrementalHash
             GetHashAndReset(hash);
             return hash;
         }
+
+        /// <summary>
+        /// Reset the internal state without getting the hash.
+        /// </summary>
+        public abstract void Reset();
     }
 
     public abstract class Murmur<T> : Murmur where T: struct
@@ -64,10 +69,7 @@ namespace MurmurIncrementalHash
 
         protected abstract void Clear();
 
-        /// <summary>
-        /// Reset the internal state.
-        /// </summary>
-        public void Reset()
+        public override void Reset()
         {
             Clear();
             _len = 0;
