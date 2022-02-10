@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MurmurIncrementalHash", "src\MurmurIncrementalHash\MurmurIncrementalHash.csproj", "{8C242C70-8F4A-4632-BB7E-87919C0EB6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MurmurIncrementalHash.Tests", "test\MurmurIncrementalHash.Tests\MurmurIncrementalHash.Tests.csproj", "{0607126D-9534-4F65-8B37-670376F026AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MurmurIncrementalHash.Tests", "test\MurmurIncrementalHash.Tests\MurmurIncrementalHash.Tests.csproj", "{0607126D-9534-4F65-8B37-670376F026AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D43794FB-8B12-4926-BE12-9DB9F5D285CE}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
