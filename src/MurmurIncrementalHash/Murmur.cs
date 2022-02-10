@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace MurmurIncrementalHash
 {
     // https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp
-    public abstract class MurmurIncrementalHash
+    public abstract class Murmur
     {
         protected int _len;
 
@@ -19,7 +19,7 @@ namespace MurmurIncrementalHash
         /// </summary>
         public int HashSize { get; }
 
-        internal MurmurIncrementalHash(uint seed, int hashSize)
+        internal Murmur(uint seed, int hashSize)
         {
             Seed = seed;
             HashSize = hashSize;
@@ -50,13 +50,13 @@ namespace MurmurIncrementalHash
         }
     }
 
-    public abstract class MurmurIncrementalHash<T> : MurmurIncrementalHash where T: struct
+    public abstract class Murmur<T> : Murmur where T: struct
     {
         protected T _h;
         private readonly byte[] _carryBuffer;
         private int _carryLength;
 
-        internal MurmurIncrementalHash(uint seed, int hashSize) : base(seed, hashSize)
+        internal Murmur(uint seed, int hashSize) : base(seed, hashSize)
         {
             _carryBuffer = new byte[HashSize];
             Reset();

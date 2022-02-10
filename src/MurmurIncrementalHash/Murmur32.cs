@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace MurmurIncrementalHash
 {
-    public class Murmur32 : MurmurIncrementalHash<uint>
+    public class Murmur32 : Murmur<uint>
     {
         private const uint C1 = 0xcc9e2d51;
         private const uint C2 = 0x1b873593;

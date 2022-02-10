@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace MurmurIncrementalHash
 {
-    internal class Murmur128x64 : MurmurIncrementalHash<Murmur128x64.Block>
+    internal class Murmur128x64 : Murmur<Murmur128x64.Block>
     {
         private const ulong C1 = 0x87c37b91114253d5;
         private const ulong C2 = 0x4cf5ad432745937f;
