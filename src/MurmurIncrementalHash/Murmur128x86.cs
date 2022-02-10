@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace MurmurIncrementalHash
 {
@@ -24,19 +24,20 @@ namespace MurmurIncrementalHash
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override Block ReadBlock(ReadOnlySpan<byte> data) => new
             (
-                BitConverter.ToUInt32(data.Slice(0)),
-                BitConverter.ToUInt32(data.Slice(4)),
-                BitConverter.ToUInt32(data.Slice(8)),
-                BitConverter.ToUInt32(data.Slice(12))
+                MemoryMarshal.Read<uint>(data.Slice(0)),
+                MemoryMarshal.Read<uint>(data.Slice(4)),
+                MemoryMarshal.Read<uint>(data.Slice(8)),
+                MemoryMarshal.Read<uint>(data.Slice(12))
             );
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void WriteBlock(Span<byte> destination, Block h)
         {
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(0), h.Item1));
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(4), h.Item2));
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(8), h.Item3));
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(12), h.Item4));
+            (uint h1, uint h2, uint h3, uint h4) = h;
+            MemoryMarshal.Write(destination.Slice(0), ref h1);
+            MemoryMarshal.Write(destination.Slice(4), ref h2);
+            MemoryMarshal.Write(destination.Slice(8), ref h3);
+            MemoryMarshal.Write(destination.Slice(12), ref h4);
         }
 
         // https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp#L277-L283

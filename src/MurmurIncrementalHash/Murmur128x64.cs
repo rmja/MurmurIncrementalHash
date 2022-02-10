@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace MurmurIncrementalHash
 {
@@ -22,15 +22,16 @@ namespace MurmurIncrementalHash
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override Block ReadBlock(ReadOnlySpan<byte> data) => new
             (
-                BitConverter.ToUInt64(data.Slice(0)),
-                BitConverter.ToUInt64(data.Slice(8))
+                MemoryMarshal.Read<ulong>(data.Slice(0)),
+                MemoryMarshal.Read<ulong>(data.Slice(8))
             );
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void WriteBlock(Span<byte> destination, Block h)
         {
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(0), h.Item1));
-            Debug.Assert(BitConverter.TryWriteBytes(destination.Slice(8), h.Item2));
+            (ulong h1, ulong h2) = h;
+            MemoryMarshal.Write(destination.Slice(0), ref h1);
+            MemoryMarshal.Write(destination.Slice(8), ref h2);
         }
 
         // https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp#L277-L283

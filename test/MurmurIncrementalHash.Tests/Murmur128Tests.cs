@@ -1,11 +1,17 @@
 using System;
 using System.Text;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace MurmurIncrementalHash.Tests
 {
     public class Murmur128Tests
     {
+        public Murmur128Tests(ITestOutputHelper testOutputHelper)
+        {
+            //Console.SetOut(new TestOutputTextWriter(testOutputHelper));
+        }
+
         [Theory]
         [InlineData(new byte[] { 0x13, 0x37 }, 0, "cfa4acc1956d584456979e933134d835")]
         public void SmokeTest(byte[] data, uint seed, string expectedHashHex)
@@ -19,6 +25,7 @@ namespace MurmurIncrementalHash.Tests
             murmur.GetHashAndReset(hash);
 
             // Then
+            Assert.IsType<Murmur128x64>(murmur);
             Assert.Equal(expectedHashHex, ToHex(hash));
         }
 
