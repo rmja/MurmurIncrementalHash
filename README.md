@@ -1,5 +1,5 @@
 # MurmurIncrementalHash
-Fast Murmur32 and Murmur128 incremental hash implementation.
+Fast, 0 allocation, Murmur32 and Murmur128 incremental hash implementation.
 
 # Usage
 ```C#
