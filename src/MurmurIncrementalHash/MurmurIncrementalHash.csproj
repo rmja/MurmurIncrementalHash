@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<Authors>Rasmus Melchior Jacobsen</Authors>
+	<Description>Fast Murmur32 and Murmur128 implementation supporting incremental hash computation.</Description>
+	<PackageProjectUrl>https://github.com/rmja/MurmurIncrementalHash</PackageProjectUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/rmja/MurmurIncrementalHash.git</RepositoryUrl>
+	<Version>1.0.0</Version>
+  </PropertyGroup>
+
+</Project>
