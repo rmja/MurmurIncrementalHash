@@ -18,3 +18,11 @@ byte[] hash = murmur.GetHashAndReset();
 // murmur.GetHashAndReset(hash);
 ```
 
+# Performance
+See asd for test suite. These numbers are from Ryzen 4000, 64 bit laptop.
+
+|       Method |     Mean |    Error |   StdDev | Allocated |
+|------------- |---------:|---------:|---------:|----------:|
+|     Murmur32 | 56.46 ns | 1.088 ns | 1.118 ns |         - |
+| Murmur128x64 | 56.16 ns | 0.432 ns | 0.361 ns |         - |
+| Murmur128x86 | 62.94 ns | 0.815 ns | 0.681 ns |         - |
