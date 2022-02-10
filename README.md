@@ -18,6 +18,10 @@ byte[] hash = murmur.GetHashAndReset();
 // murmur.GetHashAndReset(hash);
 ```
 
+An instance can be safely reused after the call to `GetHashAndReset()`.
+The `Create()` method is fast but it allocates an internal buffer.
+
+
 # Performance
 [See the test suite here](src/MurmurIncrementalHash.Benchmarks/MurmurBenchmarks.cs). These numbers are from Ryzen 4000, 64 bit laptop.
 
