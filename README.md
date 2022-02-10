@@ -14,5 +14,7 @@ var murmur = Murmur128.Create();
 murmur.AppendData(data1);
 murmur.AppendData(data2);
 byte[] hash = murmur.GetHashAndReset();
+// Span<byte> hash = stackalloc byte[16];
+// murmur.GetHashAndReset(hash);
 ```
 
