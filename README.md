@@ -27,7 +27,9 @@ The `Create()` method is fast but it allocates an internal buffer.
 
 |       Method |      Mean |    Error |   StdDev | Allocated |
 |------------- |----------:|---------:|---------:|----------:|
-|     Murmur32 |  60.26 ns | 0.322 ns | 0.286 ns |         - |
-| Murmur128x64 |  56.84 ns | 0.507 ns | 0.474 ns |         - |
-| Murmur128x86 |  58.29 ns | 0.166 ns | 0.130 ns |         - |
-|          Md5 | 275.34 ns | 0.677 ns | 0.634 ns |         - |
+|     Murmur32 |  62.75 ns | 1.266 ns | 1.601 ns |         - |
+| Murmur128x64 |  56.03 ns | 0.470 ns | 0.392 ns |         - |
+| Murmur128x86 |  60.51 ns | 0.185 ns | 0.173 ns |         - |
+|          Md5 | 269.07 ns | 1.713 ns | 1.603 ns |         - |
+|         Sha1 | 271.19 ns | 1.680 ns | 1.403 ns |         - |
+|       Sha256 | 195.18 ns | 1.092 ns | 0.912 ns |         - |
