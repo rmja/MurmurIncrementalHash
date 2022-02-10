@@ -1,6 +1,8 @@
 # MurmurIncrementalHash
 Fast, 0-allocation, Murmur32 and Murmur128 incremental hash implementation.
 
+[![PolyJson](https://img.shields.io/nuget/vpre/MurmurIncrementalHash.svg)](https://www.nuget.org/packages/MurmurIncrementalHash)
+
 # Usage
 ```C#
 var murmur = Murmur32.Create();
