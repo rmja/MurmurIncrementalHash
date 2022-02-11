@@ -111,7 +111,7 @@ namespace MurmurIncrementalHash
 
             if (remainder > 0)
             {
-                data.Slice(blocksLength).CopyTo(_carryBuffer.AsSpan(carryLength));
+                data.Slice(offset + blocksLength).CopyTo(_carryBuffer.AsSpan(carryLength));
                 carryLength += remainder;
             }
 
