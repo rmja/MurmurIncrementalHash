@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Buffers;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace MurmurIncrementalHash
@@ -53,6 +54,56 @@ namespace MurmurIncrementalHash
         /// Reset the internal state without getting the hash.
         /// </summary>
         public abstract void Reset();
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="destination">The buffer to where the hash is written.</param>
+        /// <param name="data">The input data.</param>
+        public void ComputeHash(Span<byte> destination, ReadOnlySpan<byte> data)
+        {
+            AppendData(data);
+            GetHashAndReset(destination);
+        }
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="destination">The buffer to where the hash is written.</param>
+        /// <param name="data">The input data.</param>
+        public void ComputeHash(Span<byte> destination, ReadOnlySequence<byte> data)
+        {
+            foreach (var block in data)
+            {
+                AppendData(block.Span);
+            }
+            GetHashAndReset(destination);
+        }
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="data">The input data.</param>
+        /// <returns>The computed hash.</returns>
+        public byte[] ComputeHash(ReadOnlySpan<byte> data)
+        {
+            AppendData(data);
+            return GetHashAndReset();
+        }
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="data">The input data.</param>
+        /// <returns>The computed hash.</returns>
+        public byte[] ComputeHash(ReadOnlySequence<byte> data)
+        {
+            foreach (var block in data)
+            {
+                AppendData(block.Span);
+            }
+            return GetHashAndReset();
+        }
     }
 
     public abstract class Murmur<T> : Murmur where T: struct

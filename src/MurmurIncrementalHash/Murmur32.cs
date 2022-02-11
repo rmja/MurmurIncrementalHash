@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Buffers;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace MurmurIncrementalHash
@@ -78,6 +79,31 @@ namespace MurmurIncrementalHash
             uint h1 = GetHash();
             Reset();
             return h1;
+        }
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="data">The input data.</param>
+        /// <returns>The computed hash.</returns>
+        public new uint ComputeHash(ReadOnlySpan<byte> data)
+        {
+            AppendData(data);
+            return GetHashAndReset();
+        }
+
+        /// <summary>
+        /// Compute a hash.
+        /// </summary>
+        /// <param name="data">The input data.</param>
+        /// <returns>The computed hash.</returns>
+        public new uint ComputeHash(ReadOnlySequence<byte> data)
+        {
+            foreach (var block in data)
+            {
+                AppendData(block.Span);
+            }
+            return GetHashAndReset();
         }
     }
 }
